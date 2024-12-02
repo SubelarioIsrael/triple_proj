@@ -1,0 +1,111 @@
+<?php
+
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginVoiceController;
+use App\Http\Controllers\RegisterVoiceController;
+use App\Http\Controllers\WelcomeController;
+
+// Student
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MoodHistoryController;
+use App\Http\Controllers\MoodTrackController;
+use App\Http\Controllers\ExerciseStartController;
+use App\Http\Controllers\ExercisesController;
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\ResultsController;
+use App\Http\Controllers\HotlinesController;
+use App\Http\Controllers\CallController;
+use App\Http\Controllers\OnlineResourceController;
+use App\Http\Controllers\ChatbotController;
+
+use App\Http\Controllers\AdminHomeController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\AccountsController;
+use App\Http\Controllers\AdminResourcesController;
+use App\Http\Controllers\AdminNotificationsController;
+use App\Http\Controllers\AdminMTQController;
+
+
+
+use App\Http\Controllers\UserController;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+
+Route::resource('user', UserController::class);
+
+
+Route::middleware(['auth', 'student'])->name('student.')->group(function () {
+    // sidebar
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
+
+    // Chatbot
+    Route::get('/chat', [ChatbotController::class, 'index'])->name('chat');
+
+    // Specific routes with parameters
+    Route::get('/mood-history', [MoodHistoryController::class, 'index'])->name('mood-history');
+
+    Route::get('/track-your-mood', [MoodTrackController::class, 'index'])->name('track-your-mood');
+    Route::get('/results', [MoodTrackController::class, 'showResults'])->name('mood.results');
+    Route::post('/track-your-mood/store', [MoodTrackController::class, 'store'])->name('store-mood');
+
+    // Feedback
+    Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
+
+    // Results and exercises
+    Route::get('/results/{timestamp}', [ResultsController::class, 'show'])->name('results.show');
+    Route::get('/exercises', [ExercisesController::class, 'index'])->name('exercises');
+    Route::get('/exercise/{name}', [ExerciseStartController::class, 'show'])->name('exercise.show');
+
+    // About Us
+    Route::get('/About-us', [AboutUsController::class, 'index'])->name('about-us');
+
+    // Hotlines
+    Route::get('/hotlines', [HotlinesController::class, 'index'])->name('hotlines');
+    Route::get('/call/{hotline-name}', [CallController::class, 'index'])->name('call');
+
+    // Online Resources
+    Route::get('/resource', [OnlineResourceController::class, 'index'])->name('online-resources');
+});
+
+
+Route::name('admin.')->group(function () {
+    Route::get('/home-admin', [AdminHomeController::class, 'index'])->name('home');
+    Route::get('/feedback-admin', [FeedbackController::class, 'index'])->name('feedback');
+    Route::get('/accounts', [AccountsController::class, 'index'])->name('accounts');
+    Route::get('/resources', [AdminResourcesController::class, 'index'])->name('resources');
+    Route::get('/notifications', [AdminNotificationsController::class, 'index'])->name('notifications');
+    Route::get('/mtq', [AdminMTQController::class, 'index'])->name('mtq');
+
+    // Add other admin-specific routes here
+});
+
+Route::name('authentication.')->group(function() {
+    Route::get('/', [LoginController::class, 'index'])->name('sign-in');
+    Route::post('/', [LoginController::class, 'authenticate'])->name('sign-in.authenticate');
+    Route::get('/Register', [RegisterController::class, 'index'])->name('register');
+    Route::get('/Sign-in/Voice', [LoginVoiceController::class, 'index'])->name('sign-in-voice');
+    Route::get('/Register/Voice', [RegisterVoiceController::class, 'index'])->name('register-voice');
+    Route::get('/Welcome-back', [WelcomeController::class, 'index'])->name('welcome-back');
+});
+
+Route::post('/logout', function () {
+    Auth::logout(); // Log the user out
+    return redirect()->route('authentication.sign-in'); // Redirect to login page
+})->name('logout');
