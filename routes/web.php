@@ -60,9 +60,6 @@ Route::middleware(['auth', 'student'])->name('student.')->group(function () {
     // Chatbot
     Route::get('/chat', [ChatbotController::class, 'index'])->name('chat');
 
-    // Specific routes with parameters
-    Route::get('/mood-history', [MoodHistoryController::class, 'index'])->name('mood-history');
-
     Route::get('/track-your-mood', [MoodTrackController::class, 'index'])->name('track-your-mood');
     Route::get('/results', [MoodTrackController::class, 'showResults'])->name('mood.results');
     Route::post('/track-your-mood/store', [MoodTrackController::class, 'store'])->name('store-mood');
@@ -97,6 +94,8 @@ Route::name('admin.')->group(function () {
     Route::get('/resources', [AdminResourcesController::class, 'index'])->name('resources');
 
     Route::get('/notifications', [AdminNotificationsController::class, 'index'])->name('notifications');
+    Route::post('/notifications', [AdminNotificationsController::class, 'store'])->name('notifications.store');
+    Route::delete('/admin/notifications/{id}', [AdminNotificationsController::class, 'destroy'])->name('notifications.delete');
 
     Route::get('/mtq', [AdminMTQController::class, 'index'])->name('mtq');
 
@@ -107,6 +106,7 @@ Route::name('authentication.')->group(function () {
     Route::get('/', [LoginController::class, 'index'])->name('sign-in');
     Route::post('/', [LoginController::class, 'authenticate'])->name('sign-in.authenticate');
     Route::get('/Register', [RegisterController::class, 'index'])->name('register');
+    Route::post('/register', [RegisterController::class, 'register'])->name('register.validate');
     Route::get('/Sign-in/Voice', [LoginVoiceController::class, 'index'])->name('sign-in-voice');
     Route::get('/Register/Voice', [RegisterVoiceController::class, 'index'])->name('register-voice');
     Route::get('/Welcome-back', [WelcomeController::class, 'index'])->name('welcome-back');

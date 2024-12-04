@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Notifications;  // Import the Notification model
 
 class ExerciseStartController extends Controller
 {
     public function show($name)
     {
-        $name = urldecode($name); // Decode the name parameter
+        // Decode the name parameter
+        $name = urldecode($name);
 
+        // Define exercises
         $exercises = [
             "Box Breathing" => [
                 "name" => "Box Breathing",
@@ -42,12 +45,18 @@ class ExerciseStartController extends Controller
             ]
         ];
 
+        // If the exercise name is not found, abort with 404 error
         if (!array_key_exists($name, $exercises)) {
             abort(404);
         }
 
+        // Get the exercise details
         $exercise = $exercises[$name];
 
-        return view('student.exercise_start', compact('exercise'));
+        // Fetch all notifications for all users
+        $notifications = Notifications::all();
+
+        // Pass both exercise and notifications to the view
+        return view('student.exercise_start', compact('exercise', 'notifications'));
     }
 }

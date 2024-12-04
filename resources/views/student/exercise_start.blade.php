@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-100">
     <!-- Header -->
-    <x-header></x-header>
+    <x-header :notifications="$notifications" />
 
     <!-- Exercise Container -->
     <div class="flex flex-col items-center justify-start min-h-[calc(100vh-5rem)] mt-12 px-4 space-y-12">

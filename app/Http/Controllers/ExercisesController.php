@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Notifications;  // Make sure to import the Notification model
 
 class ExercisesController extends Controller
 {
-    public function index() {
+    public function index()
+    {
+        // Fetch all notifications for all users
+        $notifications = Notifications::all();
 
+        // Sample exercises array
         $exercises = array(
             [
                 "id" => 1,
@@ -16,7 +21,6 @@ class ExercisesController extends Controller
                 "inhale_time" => 4,
                 "hold_time" => 4,
                 "exhale_time" => 4,
-
             ],
             [
                 "id" => 2,
@@ -41,7 +45,7 @@ class ExercisesController extends Controller
             ]
         );
 
-        return view('student.exercises', ['exercises' => $exercises]);
-
-    } 
+        // Pass the notifications and exercises data to the view
+        return view('student.exercises', ['exercises' => $exercises, 'notifications' => $notifications]);
+    }
 }

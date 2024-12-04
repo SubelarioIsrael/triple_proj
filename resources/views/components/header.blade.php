@@ -113,19 +113,20 @@
                 </div>
                 <!-- Notification List -->
                 <ul id="notificationList" class="divide-y divide-gray-200 hidden">
-                    <!-- Example Notification Item -->
-                    <li class="p-4 hover:bg-gray-50">
-                        <p class="text-sm font-semibold text-gray-800">Notification Title</p>
-                        <p class="text-xs text-gray-600">Short description or details</p>
-                    </li>
+                    @foreach($notifications as $notification)
+                        <li class="p-4 hover:bg-gray-50">
+                            <p class="text-sm font-semibold text-gray-800">{{ $notification->title }}</p>
+                            <p class="text-xs text-gray-600">{{ $notification->description }}</p>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
 
         <!-- Profile Button -->
         <a href="{{ route('student.profile') }}">
-            <img src="images/merc.jpg" alt="Profile" class="w-8 h-8 rounded-full">
+            <img src="https://www.gravatar.com/avatar/{{ md5(strtolower(trim('email@example.com'))) }}?d=mp&f=y" alt="Profile" class="w-8 h-8 rounded-full">
         </a>
+
     </div>
 </header>
-

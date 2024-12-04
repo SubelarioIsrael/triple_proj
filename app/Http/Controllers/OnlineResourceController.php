@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Notifications;  // Corrected to Notifications
 
 class OnlineResourceController extends Controller
 {
-    public function index() {
+    public function index()
+    {
+        // Fetch all notifications for all users
+        $notifications = Notifications::all();  // Corrected to Notifications
+
+        // Online resources data
         $resources = [
             [
                 'url' => 'https://www.youtube.com/watch?v=QUjYy4Ksy1E',
@@ -37,6 +43,7 @@ class OnlineResourceController extends Controller
             // Add more resources...
         ];
 
+        // Articles data
         $articles = [
             [
                 'title' => 'What is mental health?',
@@ -60,12 +67,13 @@ class OnlineResourceController extends Controller
             ],
             [
                 'title' => 'The Importance of Mental Health Awareness Month',
-                'excerpt' => 'Mental Health Awareness Month provides education about the reality of living with a mental health condition—while it can make life more difficult, it doesn\'t have to stop someone from having a fulfilling life. ',
+                'excerpt' => 'Mental Health Awareness Month provides education about the reality of living with a mental health condition—while it can make life more difficult, it doesn\'t have to stop someone from having a fulfilling life.',
                 'url' => 'https://www.brownhealth.org/be-well/importance-mental-health-awareness-month/',
             ],
             // Add more articles...
         ];
-    
-        return view('student.online-resources', compact('resources', 'articles'));
+
+        // Pass resources, articles, and notifications to the view
+        return view('student.online-resources', compact('resources', 'articles', 'notifications'));
     }
 }

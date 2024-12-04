@@ -36,7 +36,7 @@
 </head>
 <body class="bg-white">
 
-    <x-header></x-header>
+    <x-header :notifications="$notifications" />
 
     <!-- Container with Centered Feedback Form -->
     <div class="container mx-auto px-6 py-8">

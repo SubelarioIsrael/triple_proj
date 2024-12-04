@@ -49,7 +49,7 @@ class CreateInitialMigration extends Migration
                 $table->id(); // Primary key
                 $table->string('title'); // Title of the notification
                 $table->text('description'); // Description of the notification
-                $table->timestamp('end_time'); // End time of the notification
+                $table->timestamp('start_time'); // End time of the notification
                 $table->foreignId('added_by_user_id')->constrained('users'); // Foreign key referencing users table
                 $table->timestamps(); // Created at and updated at timestamps
             });

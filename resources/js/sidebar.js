@@ -33,20 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const emptyState = document.getElementById("emptyState");
     const notificationList = document.getElementById("notificationList");
 
-    // Example: Load notifications dynamically
-    const notifications = []; // Replace with your dynamic data
-    if (notifications.length > 0) {
+    // Check if notifications are available
+    if (notificationList.children.length > 0) {
         emptyState.classList.add("hidden");
         notificationList.classList.remove("hidden");
-        notifications.forEach((notification) => {
-            const listItem = document.createElement("li");
-            listItem.className = "p-4 hover:bg-gray-50";
-            listItem.innerHTML = `
-                <p class="text-sm font-semibold text-gray-800">${notification.title}</p>
-                <p class="text-xs text-gray-600">${notification.description}</p>
-            `;
-            notificationList.appendChild(listItem);
-        });
+    } else {
+        emptyState.classList.remove("hidden");
+        notificationList.classList.add("hidden");
     }
 
     // Toggle dropdown visibility with smooth animation

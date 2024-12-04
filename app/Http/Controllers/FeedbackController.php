@@ -4,25 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Notifications;  // Corrected to Notifications
 
 class FeedbackController extends Controller
 {
     public function index()
     {
-        return view('student.feedback');
+        // Fetch all notifications for all users
+        $notifications = Notifications::all();  // Corrected to Notifications
+
+        // Pass notifications to the view
+        return view('student.feedback', compact('notifications'));
     }
 
     public function store(Request $request)
     {
         // Validate the incoming request
         $validatedData = $request->validate([
-            'rating' => 'required|integer|between:1,5', // Changed from 'satisfaction' to 'rating'
+            'rating' => 'required|integer|between:1,5',
             'subject' => 'required|string',
             'feedback' => 'required|string',
         ]);
 
-        // Store feedback into the database or send it wherever necessary
-        // Example: Feedback saved into a hypothetical 'feedbacks' table
+        // Store feedback into the database
         \App\Models\Feedback::create([
             'user_id' => Auth::id(),
             'rating' => $validatedData['rating'],

@@ -45,7 +45,7 @@
     </style>
 </head>
 <body>
-    <x-header></x-header>
+    <x-header :notifications="$notifications" />
     <div class="max-w-2xl mx-auto my-8 mt-10 text-center">
         <h2 class="text-2xl font-bold">Mood Tracking Questionnaire</h2>
     

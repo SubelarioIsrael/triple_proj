@@ -8,7 +8,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <x-header></x-header>
+    <x-header :notifications="$notifications" />
 
     <h2 class="text-2xl font-bold text-center text-gray-700 mb-6 mt-8">
         Breathing Exercises

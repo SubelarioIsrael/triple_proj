@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="py-2">
-                <a href="#" class="block text-gray-700 hover:text-blue-600 font-semibold">
+                <a href="{{ route('admin.resources') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
                     Resources
                 </a>
             </li>
@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li class="py-2">
-                <a href="#" class="block text-gray-700 hover:text-blue-600 font-semibold">
+                <a href="{{ route('admin.mtq') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
                     MTQ
                 </a>
             </li>

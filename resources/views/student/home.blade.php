@@ -9,7 +9,7 @@
 </head>
 <body class="bg-white text-bg_blue font-sans">
 
-    <x-header></x-header>
+    <x-header :notifications="$notifications" />
 
     <!-- Main Content -->
     <main class="container mx-auto bg-white py-8 px-4">

@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Notifications;  // Corrected to Notifications
 
 class HotlinesController extends Controller
 {
-    public function index() {
+    public function index()
+    {
+        // Fetch all notifications for all users
+        $notifications = Notifications::all();  // Corrected to Notifications
+
+        // Hotline data
         $hotlines = [
             [
                 'title' => 'HOPELINE',
@@ -30,7 +36,7 @@ class HotlinesController extends Controller
             [
                 'title' => 'NCMH Crisis Hotline',
                 'audience' => 'Counselors',
-                'description' => 'HOPELINE provides 24/7, free, compassionate and confidential support by phone. ',
+                'description' => 'HOPELINE provides 24/7, free, compassionate and confidential support by phone.',
                 'status' => 'Open',
                 'availability' => 'Mon-Fri 8am-6pm',
                 'phone' => '1553',
@@ -47,7 +53,8 @@ class HotlinesController extends Controller
             ],
             // Add more hotlines as needed
         ];
-    
-        return view('student.hotlines', ['hotlines' => $hotlines]);
-    } 
+
+        // Pass both hotlines and notifications to the view
+        return view('student.hotlines', ['hotlines' => $hotlines, 'notifications' => $notifications]);
+    }
 }

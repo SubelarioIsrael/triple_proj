@@ -8,7 +8,7 @@
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body>
-    <x-header></x-header>
+    <x-header :notifications="$notifications" />
 
     <div class="w-3/4 mx-auto my-8 bg-white shadow-lg rounded-lg p-8">
         <!-- Profile Section -->
@@ -19,12 +19,10 @@
                 @if ($user->profile_picture)
                     <img src="{{ asset('storage/'.$user->profile_picture) }}" alt="Profile Picture" class="w-full h-full object-cover">
                 @else
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-                        <circle cx="50" cy="50" r="48" stroke="gray" stroke-width="2" fill="#d1d5db" />
-                        <text x="50%" y="50%" font-size="30" font-weight="bold" fill="#ffffff" text-anchor="middle" alignment-baseline="middle">U</text>
-                    </svg>
+                    <img src="https://www.gravatar.com/avatar/{{ md5(strtolower(trim($user->email))) }}?d=mp&f=y" alt="Profile" class="w-full h-full object-cover">
                 @endif
             </div>
+            
 
             <!-- Profile Info -->
             <h1 class="text-2xl font-semibold text-gray-800 mb-4">Profile</h1>
