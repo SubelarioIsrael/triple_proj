@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class MoodTrackController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         // Fetch all questions from the mt_questions table
         $questions = MoodTrackQuestions::orderBy('id')->pluck('q_item')->toArray(); // Only fetch the question text
-        
+
         return view('student.track-mood', compact('questions'));
     }
 
@@ -68,24 +69,15 @@ class MoodTrackController extends Controller
             }
         }
 
-        // If notes are provided, store them as well
-        if ($request->filled('notes')) {
-            MoodHistory::create([
-                'user_id' => $userId,
-                'optional_notes' => $request->input('notes'),
-                'question_id' => null,
-                'created_at' => $submissionTime, // Group notes with the same timestamp
-            ]);
-        }
-
         return redirect()->route('student.home')->with('success', 'Mood data saved successfully!');
     }
 
 
-    
 
 
-    public function showResults() {
+
+    public function showResults()
+    {
 
         $results = [
             [
@@ -95,10 +87,10 @@ class MoodTrackController extends Controller
             ],
             // Add other questions and responses...
         ];
-    
+
         $totalScore = 21; // Example total score
         $summaryMessage = "It looks like you may be experiencing some challenges. This could be a good time to focus on self-care and consider reaching out for support.";
-    
+
         return view('student.results', compact('results', 'totalScore', 'summaryMessage'));
     }
 }

@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('auth.login');
     }
 
@@ -38,14 +39,14 @@ class LoginController extends Controller
         if (Auth::attempt(['username' => $username, 'password' => $password])) {
             // Retrieve the authenticated user
             $user = Auth::user();
-            
+
             // Check user role and redirect
             if ($user->type === 'admin') {
                 return redirect()->route('admin.home');
             } elseif ($user->type === 'student') {
                 return redirect()->route('authentication.sign-in-voice');
             }
-        
+
             return back()->withErrors(['role' => 'User role is undefined']);
         } else {
             // Password is incorrect
@@ -53,7 +54,7 @@ class LoginController extends Controller
         }
 
         // If no valid role, show error
-        return back()->withErrors(['role' => 'User role is undefined']);
+        // return back()->withErrors(['role' => 'User role is undefined']);
     }
 
 }

@@ -60,7 +60,7 @@
                     <div class="flex justify-center space-x-6">
                         @for ($value = 1; $value <= 5; $value++)
                             <label class="flex flex-col items-center">
-                                <input type="radio" name="question{{ $index }}" value="{{ $value }}" class="hidden radio-input">
+                                <input type="radio" name="question{{ $index }}" value="{{ $value }}" class="hidden radio-input" required>
                                 <span class="block w-10 h-10 border-2 rounded-full transition duration-300"></span>
                                 <span class="text-sm">{{ $value === 1 ? 'Agree' : ($value === 5 ? 'Disagree' : 'Neutral') }}</span>
                             </label>

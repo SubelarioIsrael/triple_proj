@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +14,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Seed a default user if it doesn't exist
+        User::firstOrCreate(
+            ['email' => 'merc@merc.com'], // Unique field(s) to check
+            [
+                'username' => 'merc',
+                'email' => 'merc@merc.com',
+                'password' => 'merc',
+                'type' => 'student',
+                'contact_number' => '09121212121' // Always hash passwords
+            ]
+        );
+        User::firstOrCreate(
+            ['email' => 'admin@admin.com'], // Unique field(s) to check
+            [
+                'username' => 'admin',
+                'email' => 'admin@admin.com',
+                'password' => 'admin',
+                'type' => 'admin',
+                'contact_number' => '09121212121' // Always hash passwords
+            ]
+        );
     }
 }
