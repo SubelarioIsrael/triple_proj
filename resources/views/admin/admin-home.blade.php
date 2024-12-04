@@ -63,7 +63,7 @@
 
                 <!-- Analytics Card 3 -->
                 <div class="bg-white p-6 shadow rounded-lg">
-                    <h2 class="text-lg font-bold text-gray-700">Pending Requests</h2>
+                    <h2 class="text-lg font-bold text-gray-700">Notifications</h2>
                     <p class="text-3xl font-semibold text-red-500 mt-2">9</p>
                 </div>
             </div>

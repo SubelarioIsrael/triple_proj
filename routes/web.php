@@ -53,8 +53,9 @@ Route::middleware(['auth', 'student'])->name('student.')->group(function () {
     // sidebar
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
 
+    Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
+    Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
     // Chatbot
     Route::get('/chat', [ChatbotController::class, 'index'])->name('chat');
 
@@ -96,7 +97,7 @@ Route::name('admin.')->group(function () {
     // Add other admin-specific routes here
 });
 
-Route::name('authentication.')->group(function() {
+Route::name('authentication.')->group(function () {
     Route::get('/', [LoginController::class, 'index'])->name('sign-in');
     Route::post('/', [LoginController::class, 'authenticate'])->name('sign-in.authenticate');
     Route::get('/Register', [RegisterController::class, 'index'])->name('register');

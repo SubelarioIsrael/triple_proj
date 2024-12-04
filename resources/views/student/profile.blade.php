@@ -39,12 +39,14 @@
         <section>
             <h2 class="text-2xl font-semibold text-gray-800 mb-4">Mood History</h2>
             <div class="space-y-4">
-                @foreach ($moodHistory as $history)
+                @foreach ($moodHistoryWithBreathing as $history)
                     <a href="{{ route('student.results.show', ['timestamp' => $history->timestamp]) }}" class="block bg-gray-50 p-4 shadow rounded-lg flex items-center hover:bg-gray-100 transition">
                         <div class="flex-grow">
                             <p><strong>Date Taken:</strong> {{ \Carbon\Carbon::parse($history->timestamp)->format('Y-m-d H:i:s') }}</p>
                             <p><strong>Total Score:</strong> {{ $history->total_score }}</p>
-                            <p><strong>Recommended Breathing Exercise:</strong> Box Breathing</p>
+                            
+                            <!-- Breathing Exercise Recommendation -->
+                            <p><strong>Recommended Breathing Exercise:</strong> {{ $history->breathing_exercise }}</p>
                         </div>
                         <img src="images/nav_next.png" alt="Next" class="w-6 h-6 ml-4">
                     </a>
