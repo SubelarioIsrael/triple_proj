@@ -9,43 +9,11 @@
 </head>
 <body class="bg-gray-100">
     <div class="flex h-screen">
-        <!-- Sidebar -->
-        <div id="sidebarContent" class="w-64 bg-white shadow-lg h-full p-6">
-            <h2 class="text-xl font-bold text-gray-800 mb-6">Admin Dashboard</h2>
-            <nav>
-                <ul class="space-y-4 divide-y">
-                    <li class="py-2">
-                        <a href="#" class="block text-gray-700 hover:text-blue-600 font-semibold">
-                            Feedback
-                        </a>
-                    </li>
-                    <li class="py-2">
-                        <a href="#" class="block text-gray-700 hover:text-blue-600 font-semibold">
-                            Accounts
-                        </a>
-                    </li>
-                    <li class="py-2">
-                        <a href="#" class="block text-gray-700 hover:text-blue-600 font-semibold">
-                            Resources
-                        </a>
-                    </li>
-                    <li class="py-2">
-                        <a href="#" class="block text-gray-700 hover:text-blue-600 font-semibold">
-                            Notifications
-                        </a>
-                    </li>
-                    <li class="py-2">
-                        <a href="#" class="block text-gray-700 hover:text-blue-600 font-semibold">
-                            MTQ
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        <x-admin-sidebar></x-admin-sidebar>
 
         <!-- Main Content -->
         <div class="flex-1 p-6 overflow-auto">
-            <h1 class="text-2xl font-bold text-gray-800 mb-6">Welcome, Admin!</h1>
+            <h1 class="text-2xl font-bold text-gray-800 mb-6">Welcome, {{ $username }}!</h1>
             
             <!-- Data Analytics Section -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -63,8 +31,8 @@
 
                 <!-- Analytics Card 3 -->
                 <div class="bg-white p-6 shadow rounded-lg">
-                    <h2 class="text-lg font-bold text-gray-700">Notifications</h2>
-                    <p class="text-3xl font-semibold text-red-500 mt-2">9</p>
+                    <h2 class="text-lg font-bold text-gray-700">Active Notifications</h2>
+                    <p class="text-3xl font-semibold text-red-500 mt-2">{{ $notificationCount }}</p>
                 </div>
             </div>
             <div class="mt-8 bg-white p-6 shadow rounded-lg">

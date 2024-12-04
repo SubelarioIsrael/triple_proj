@@ -21,6 +21,7 @@ use App\Http\Controllers\OnlineResourceController;
 use App\Http\Controllers\ChatbotController;
 
 use App\Http\Controllers\AdminHomeController;
+use App\Http\Controllers\AdminFeedbackController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\AdminResourcesController;
@@ -88,10 +89,15 @@ Route::middleware(['auth', 'student'])->name('student.')->group(function () {
 
 Route::name('admin.')->group(function () {
     Route::get('/home-admin', [AdminHomeController::class, 'index'])->name('home');
-    Route::get('/feedback-admin', [FeedbackController::class, 'index'])->name('feedback');
+    Route::get('/feedback-admin', [AdminFeedbackController::class, 'index'])->name('feedback');
+
     Route::get('/accounts', [AccountsController::class, 'index'])->name('accounts');
+    Route::delete('/admin/users/{id}', [AccountsController::class, 'destroy'])->name('users.destroy');
+
     Route::get('/resources', [AdminResourcesController::class, 'index'])->name('resources');
+
     Route::get('/notifications', [AdminNotificationsController::class, 'index'])->name('notifications');
+
     Route::get('/mtq', [AdminMTQController::class, 'index'])->name('mtq');
 
     // Add other admin-specific routes here

@@ -5,15 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Feedback;
 use App\Models\User;
+use App\Models\Notifications;
+use Illuminate\Support\Facades\Auth;
 
 class AdminHomeController extends Controller
 {
-    public function index() {
+    public function index()
+    {
+        // Fetch the logged-in user's username
+        $username = Auth::user()->username;
+
         // Fetch total user count
         $userCount = User::count();
 
-        // Fetch total feedback count (if needed)
+        // Fetch total feedback count
         $feedbackCount = Feedback::count();
+
+        // Fetch total notifications count
+        $notificationCount = Notifications::count();
 
         // Fetch user count grouped by year (from the `created_at` column)
         $userStats = User::selectRaw('YEAR(created_at) as year, COUNT(*) as count')
@@ -30,6 +39,6 @@ class AdminHomeController extends Controller
         }
 
         // Pass the data to the view
-        return view('admin.admin-home', compact('userCount', 'feedbackCount', 'userData', 'years'));
+        return view('admin.admin-home', compact('username', 'userCount', 'feedbackCount', 'notificationCount', 'userData', 'years'));
     }
 }
