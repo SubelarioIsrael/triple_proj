@@ -65,6 +65,26 @@ class CreateInitialMigration extends Migration
                 $table->timestamps();  // Created and updated timestamps
             });
         }
+
+        if (!Schema::hasTable('resources')) {
+            Schema::create('resources', function (Blueprint $table) {
+                $table->id(); // Primary key
+                $table->string('url'); // URL of the resource
+                $table->string('thumbnail'); // Path to the thumbnail image
+                $table->string('title'); // Title of the resource
+                $table->timestamps(); // Created and updated timestamps
+            });
+        }
+
+        if (!Schema::hasTable('articles')) {
+            Schema::create('articles', function (Blueprint $table) {
+                $table->id(); // Primary key
+                $table->string('title'); // Title of the article
+                $table->text('excerpt'); // Short description or summary of the article
+                $table->string('url'); // URL of the article
+                $table->timestamps(); // Created and updated timestamps
+            });
+        }
     }
 
     /**
