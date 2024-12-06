@@ -1,5 +1,6 @@
 <!-- Sidebar -->
-<div id="sidebarContent" class="w-64 bg-white shadow-lg h-full p-6">
+<div id="sidebarContent" class="w-64 bg-white shadow-lg min-h-screen p-6">
+
     <h2 class="text-xl font-bold text-gray-800 mb-6">Admin Dashboard</h2>
     <nav>
         <ul class="space-y-4 divide-y">

@@ -107,6 +107,9 @@ Route::name('admin.')->group(function () {
     Route::delete('/admin/notifications/{id}', [AdminNotificationsController::class, 'destroy'])->name('notifications.delete');
 
     Route::get('/mtq', [AdminMTQController::class, 'index'])->name('mtq');
+    Route::get('/admin/mtq/{id}/edit', [AdminMTQController::class, 'edit'])->name('mtq.edit');
+    Route::put('/admin/mtq/{id}', [AdminMTQController::class, 'update'])->name('mtq.update');
+
 
     // Add other admin-specific routes here
 });
