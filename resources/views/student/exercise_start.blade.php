@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $exercise['name'] }}</title>
+    <title>{{ $exerciseArray['name'] }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100">
@@ -15,8 +15,8 @@
     <div class="flex flex-col items-center justify-start min-h-[calc(100vh-5rem)] mt-12 px-4 space-y-12">
         <!-- Exercise Details -->
         <div class="flex flex-col items-center text-center space-y-4">
-            <h2 class="text-3xl font-extrabold text-gray-800 mb-4">{{ $exercise['name'] }}</h2>
-            <p class="text-lg text-gray-600">{{ $exercise['instructions'] }}</p>
+            <h2 class="text-3xl font-extrabold text-gray-800 mb-4">{{ $exerciseArray['name'] }}</h2>
+            <p class="text-lg text-gray-600">{{ $exerciseArray['instructions'] }}</p>
         </div>
     
         <!-- Breathing Circle -->
@@ -32,13 +32,12 @@
     </div>
 
     <!-- JavaScript -->
-    <!-- JavaScript -->
     <script src="{{ Vite::asset('resources/js/sidebar.js') }}"></script>
     <script>
         document.getElementById('startBtn').addEventListener('click', () => {
-            const inhaleTime = {{ $exercise['inhale_time'] }};
-            const holdTime = {{ $exercise['hold_time'] }};
-            const exhaleTime = {{ $exercise['exhale_time'] }};
+            const inhaleTime = {{ $exerciseArray['inhale_time'] }};
+            const holdTime = {{ $exerciseArray['hold_time'] }};
+            const exhaleTime = {{ $exerciseArray['exhale_time'] }};
             const totalCycleTime = inhaleTime + holdTime + exhaleTime;
 
             const circle = document.getElementById('circle');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Notifications;  // Import the Notification model
+use App\Models\Exercises;  // Import the Notification model
 
 class ExerciseStartController extends Controller
 {
@@ -13,50 +14,28 @@ class ExerciseStartController extends Controller
         // Decode the name parameter
         $name = urldecode($name);
 
-        // Define exercises
-        $exercises = [
-            "Box Breathing" => [
-                "name" => "Box Breathing",
-                "inhale_time" => 4,
-                "hold_time" => 4,
-                "exhale_time" => 4,
-                "instructions" => "Breathe in for 4 seconds, hold for 4 seconds, and breathe out for 4 seconds."
-            ],
-            "4-7-8 Breathing" => [
-                "name" => "4-7-8 Breathing",
-                "inhale_time" => 4,
-                "hold_time" => 7,
-                "exhale_time" => 8,
-                "instructions" => "Breathe in for 4 seconds, hold for 7 seconds, and exhale slowly for 8 seconds."
-            ],
-            "Balanced Breathing" => [
-                "name" => "Balanced Breathing",
-                "inhale_time" => 5,
-                "hold_time" => 0,
-                "exhale_time" => 5,
-                "instructions" => "Breathe in for 5 seconds and exhale for 5 seconds. Keep it steady."
-            ],
-            "Energizing Breathing" => [
-                "name" => "Energizing Breathing",
-                "inhale_time" => 4,
-                "hold_time" => 5,
-                "exhale_time" => 3,
-                "instructions" => "Breathe in for 4 seconds, hold for 5 seconds, and exhale sharply for 3 seconds."
-            ]
-        ];
+        // Fetch the exercise from the database using the name
+        $exercise = Exercises::where('name', $name)->first();
 
-        // If the exercise name is not found, abort with 404 error
-        if (!array_key_exists($name, $exercises)) {
-            abort(404);
+        // If the exercise is not found, handle the error (e.g., redirect or show a 404 page)
+        if (!$exercise) {
+            abort(404, 'Exercise not found');
         }
 
-        // Get the exercise details
-        $exercise = $exercises[$name];
+        // Convert the exercise to an array for Blade compatibility
+        $exerciseArray = [
+            'name' => $exercise->name,
+            'inhale_time' => $exercise->inhale_time,
+            'hold_time' => $exercise->hold_time,
+            'exhale_time' => $exercise->exhale_time,
+            'instructions' => $exercise->instructions,
+        ];
 
-        // Fetch all notifications for all users
-        $notifications = Notifications::all();
+        // Fetch all notifications for the current user (assuming notifications are for authenticated users)
+        $notifications = Notifications::all(); // Update this query as needed based on your logic
 
-        // Pass both exercise and notifications to the view
-        return view('student.exercise_start', compact('exercise', 'notifications'));
+        // Pass the exercise array and notifications to the view
+        return view('student.exercise_start', compact('exerciseArray', 'notifications'));
     }
+
 }
