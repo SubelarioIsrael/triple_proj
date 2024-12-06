@@ -95,13 +95,7 @@ Route::name('admin.')->group(function () {
     Route::get('/accounts', [AccountsController::class, 'index'])->name('accounts');
     Route::delete('/admin/users/{id}', [AccountsController::class, 'destroy'])->name('users.destroy');
 
-    // Resources Management
-    Route::get('/resources', [AdminResourcesController::class, 'index'])->name('resources');
-    Route::post('/resources', [AdminResourcesController::class, 'storeResource'])->name('resources.store');
-    Route::post('/articles', [AdminResourcesController::class, 'storeArticle'])->name('articles.store');
-    Route::put('/resources/{id}', [AdminResourcesController::class, 'updateResource'])->name('resources.update');
-    Route::put('/articles/{id}', [AdminResourcesController::class, 'updateArticle'])->name('articles.update');
-
+    // notifications
     Route::get('/notifications', [AdminNotificationsController::class, 'index'])->name('notifications');
     Route::post('/notifications', [AdminNotificationsController::class, 'store'])->name('notifications.store');
     Route::delete('/admin/notifications/{id}', [AdminNotificationsController::class, 'destroy'])->name('notifications.delete');
@@ -112,6 +106,19 @@ Route::name('admin.')->group(function () {
 
 
     // Add other admin-specific routes here
+});
+
+// Admin Resources and Articles Routes
+Route::prefix('admin-resources')->group(function () {
+    Route::get('/resources', [AdminResourcesController::class, 'index'])->name('admin-resources.index'); // Show all resources and articles
+
+    // Resource routes
+    Route::post('/resources/store', [AdminResourcesController::class, 'storeResource'])->name('admin-resources.store-resource'); // Store a new resource
+    Route::put('/resources/{id}', [AdminResourcesController::class, 'updateResource'])->name('admin-resources.edit-resource'); // Update an existing resource
+
+    // Article routes
+    Route::post('/articles', [AdminResourcesController::class, 'storeArticle'])->name('admin-resources.store-article'); // Store a new article
+    Route::put('/articles/{id}', [AdminResourcesController::class, 'updateArticle'])->name('admin-resources.edit-article'); // Update an existing article
 });
 
 

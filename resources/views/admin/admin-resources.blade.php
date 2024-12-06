@@ -14,11 +14,26 @@
 
         <!-- Main Content -->
         <div class="container mx-auto py-6">
+            <!-- Flash Messages -->
+            @if (session('success'))
+                <div class="bg-green-100 text-green-700 border border-green-400 px-4 py-3 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <!-- Helpful Links Section -->
             <h2 class="text-2xl font-bold mb-6 text-center">Helpful Links</h2>
-            <a href="{{ route('admin.resources.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-4">
-                Add Resource
-            </a>
+            <form method="POST" action="{{ route('admin-resources.store-resource') }}" class="mb-4">
+                @csrf
+                <div class="grid grid-cols-3 gap-4">
+                    <input type="text" name="url" placeholder="Resource URL" class="border p-2 rounded" required>
+                    <input type="text" name="thumbnail" placeholder="Thumbnail URL" class="border p-2 rounded" required>
+                    <input type="text" name="title" placeholder="Resource Title" class="border p-2 rounded" required>
+                </div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2">
+                    Add Resource
+                </button>
+            </form>
             <div class="grid grid-cols-3 gap-6">
                 @foreach ($resources as $resource)
                     <div class="border rounded-lg shadow-lg overflow-hidden relative p-4">
@@ -28,21 +43,29 @@
                                 <h3 class="text-md font-semibold mb-8">{{ $resource->title }}</h3>
                             </div>
                         </a>
-                        <a href="{{ route('resources.edit', $resource->id) }}" 
-                           class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded absolute bottom-0 inset-x-0 m-4 mt-8 text-center">
+                        <a href="{{ route('admin-resources.edit-resource', $resource->id) }}" 
+                            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded absolute bottom-0 inset-x-0 m-4">
                             Edit
                         </a>
                     </div>
                 @endforeach
             </div>
-        
+
             <div class="my-12"></div>
-        
+
             <!-- Articles Section -->
             <h2 class="text-2xl font-bold mb-6 text-center">Articles</h2>
-            <a href="{{ route('admin.articles.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-4">
-                Add Article
-            </a>
+            <form method="POST" action="{{ route('admin-resources.store-article') }}" class="mb-4">
+                @csrf
+                <div class="grid grid-cols-3 gap-4">
+                    <input type="text" name="title" placeholder="Article Title" class="border p-2 rounded" required>
+                    <input type="text" name="excerpt" placeholder="Article Excerpt" class="border p-2 rounded" required>
+                    <input type="text" name="url" placeholder="Article URL" class="border p-2 rounded" required>
+                </div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2">
+                    Add Article
+                </button>
+            </form>
             <div class="grid grid-cols-3 gap-6">
                 @foreach ($articles as $article)
                     <div class="border rounded-lg shadow-lg p-4 relative">
@@ -50,14 +73,13 @@
                             <h3 class="text-md font-semibold">{{ $article->title }}</h3>
                             <p class="text-sm text-gray-600 mt-2 mb-14">{{ $article->excerpt }}</p>
                         </a>
-                        <a href="{{ route('articles.edit', $article->id) }}" 
-                           class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded absolute bottom-0 inset-x-0 m-4 text-center">
+                        <a href="{{ route('admin-resources.edit-article', $article->id) }}" 
+                            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded absolute bottom-0 inset-x-0 m-4">
                             Edit
                         </a>
                     </div>
                 @endforeach
             </div>
-            
         </div>
     </div>
 </body>

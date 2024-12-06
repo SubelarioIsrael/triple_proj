@@ -20,7 +20,7 @@
                 </a>
             </li>
             <li class="py-2">
-                <a href="{{ route('admin.resources') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
+                <a href="{{ route('admin-resources.index') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
                     Resources
                 </a>
             </li>
