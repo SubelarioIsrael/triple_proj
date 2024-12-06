@@ -5,16 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MoodTrackQuestions;
 use App\Models\MoodHistory;
+use App\Models\Notifications;
 use Illuminate\Support\Facades\Auth;
 
 class MoodTrackController extends Controller
 {
     public function index()
     {
+        // Fetch all notifications for all users
+        $notifications = Notifications::all();  // Corrected to Notifications
+
         // Fetch all questions from the mt_questions table
         $questions = MoodTrackQuestions::orderBy('id')->pluck('q_item')->toArray(); // Only fetch the question text
 
-        return view('student.track-mood', compact('questions'));
+        return view('student.track-mood', compact('questions', 'notifications'));
     }
 
     // public function store(Request $request)
@@ -62,7 +66,7 @@ class MoodTrackController extends Controller
                 // Create a new record for each question
                 MoodHistory::create([
                     'user_id' => $userId,
-                    'question_id' => $questionId,
+                    'question_id' => $questionId + 1,
                     'score' => $value,
                     'created_at' => $submissionTime, // Group by the same timestamp
                 ]);

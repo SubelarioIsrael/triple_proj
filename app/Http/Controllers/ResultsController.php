@@ -49,9 +49,9 @@ class ResultsController extends Controller
      */
     private function getMentalStateSummary($totalScore)
     {
-        if ($totalScore <= 10) {
+        if ($totalScore >= 10) {
             return 'Your mental state seems very calm.';
-        } elseif ($totalScore <= 30) {
+        } elseif ($totalScore >= 30) {
             return 'You might be experiencing some stress.';
         } else {
             return 'Consider reaching out for additional support.';
