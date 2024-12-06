@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Hash;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    use HasFactory;
 
     protected $table = 'users';
 

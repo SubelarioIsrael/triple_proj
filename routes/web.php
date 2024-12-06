@@ -9,7 +9,6 @@ use App\Http\Controllers\WelcomeController;
 // Student
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\MoodHistoryController;
 use App\Http\Controllers\MoodTrackController;
 use App\Http\Controllers\ExerciseStartController;
 use App\Http\Controllers\ExercisesController;
@@ -51,12 +50,16 @@ Route::resource('user', UserController::class);
 
 
 Route::middleware(['auth', 'student'])->name('student.')->group(function () {
-    // sidebar
+    // Sidebar
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
+    // Edit Profile
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
     Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
     Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
+
     // Chatbot
     Route::get('/chat', [ChatbotController::class, 'index'])->name('chat');
 
@@ -84,6 +87,7 @@ Route::middleware(['auth', 'student'])->name('student.')->group(function () {
 });
 
 
+
 Route::name('admin.')->group(function () {
     Route::get('/home-admin', [AdminHomeController::class, 'index'])->name('home');
     Route::get('/feedback-admin', [AdminFeedbackController::class, 'index'])->name('feedback');
@@ -91,7 +95,12 @@ Route::name('admin.')->group(function () {
     Route::get('/accounts', [AccountsController::class, 'index'])->name('accounts');
     Route::delete('/admin/users/{id}', [AccountsController::class, 'destroy'])->name('users.destroy');
 
+    // Resources Management
     Route::get('/resources', [AdminResourcesController::class, 'index'])->name('resources');
+    Route::post('/resources', [AdminResourcesController::class, 'storeResource'])->name('resources.store');
+    Route::post('/articles', [AdminResourcesController::class, 'storeArticle'])->name('articles.store');
+    Route::put('/resources/{id}', [AdminResourcesController::class, 'updateResource'])->name('resources.update');
+    Route::put('/articles/{id}', [AdminResourcesController::class, 'updateArticle'])->name('articles.update');
 
     Route::get('/notifications', [AdminNotificationsController::class, 'index'])->name('notifications');
     Route::post('/notifications', [AdminNotificationsController::class, 'store'])->name('notifications.store');
@@ -101,6 +110,7 @@ Route::name('admin.')->group(function () {
 
     // Add other admin-specific routes here
 });
+
 
 Route::name('authentication.')->group(function () {
     Route::get('/', [LoginController::class, 'index'])->name('sign-in');
