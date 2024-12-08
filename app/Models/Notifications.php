@@ -16,4 +16,9 @@ class Notifications extends Model
         'description',
         'added_by_user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'added_by_user_id');
+    }
 }

@@ -11,7 +11,7 @@ class AdminNotificationsController extends Controller
     public function index()
     {
         // Fetch all active notifications
-        $notifications = Notifications::all();
+        $notifications = Notifications::with('user')->get();
 
         return view('admin.admin-notifications', compact('notifications'));
     }
