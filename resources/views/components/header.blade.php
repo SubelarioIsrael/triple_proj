@@ -98,15 +98,18 @@
     </div>
     <!-- Notification and Profile Buttons -->
     <div class="absolute right-6 flex items-center space-x-6">
-        <!-- Notification Button -->
+        <!-- Notification Button with Counter -->
         <div class="relative">
             <button id="notificationButton" class="relative">
-                <img src="{{ URL('images/notification.png')}}" alt="" class="w-8 h-8">
+                <img src="{{ URL('images/notification.png') }}" alt="Notification" class="w-8 h-8">
+                <!-- Notification Counter -->
+                @if($notifications->count() > 0)
+                    <span id="notificationCount" class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">{{ $notifications->count() }}</span>
+                @endif
             </button>
 
             <!-- Dropdown -->
-            <div id="notificationDropdown" 
-                class="hidden opacity-0 transform scale-95 absolute right-0 mt-2 w-64 bg-white shadow-lg rounded-lg transition-all duration-300">
+            <div id="notificationDropdown" class="hidden opacity-0 transform scale-95 absolute right-0 mt-2 w-64 bg-white shadow-lg rounded-lg transition-all duration-300">
                 <!-- Empty State -->
                 <div id="emptyState" class="p-4 text-gray-500 text-center">
                     No notifications at the moment
@@ -117,11 +120,16 @@
                         <li class="p-4 hover:bg-gray-50">
                             <p class="text-sm font-semibold text-gray-800">{{ $notification->title }}</p>
                             <p class="text-xs text-gray-600">{{ $notification->description }}</p>
+                            <!-- Display start_time -->
+                            <p class="text-xs text-gray-400">
+                                {{ \Carbon\Carbon::createFromTimestamp($notification->start_time)->format('Y-m-d H:i') }}
+                            </p>                                                                                 
                         </li>
                     @endforeach
                 </ul>
             </div>
         </div>
+
 
         <!-- Profile Button -->
         <a href="{{ route('student.profile') }}">

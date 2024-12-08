@@ -58,7 +58,9 @@
                             </button>
                         </div>
                     </form>
-                    
+                    <!-- Register Link -->
+                    <p class="text-gray-800 text-sm !mt-8 text-center">Already have an account? <a href="{{ route('authentication.sign-in') }}" class="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold">Sign-in!</a></p>
+
                 </div>
             </div>
         </div>

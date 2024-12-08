@@ -16,7 +16,6 @@ closeSidebar.addEventListener("click", () => {
     sidebarContent.classList.add("-translate-x-full");
     sidebarContent.addEventListener(
         "transitionend",
-
         () => {
             sidebar.classList.add("hidden");
         },
@@ -43,7 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Toggle dropdown visibility with smooth animation
-    notificationButton.addEventListener("click", () => {
+    notificationButton.addEventListener("click", (event) => {
+        // Prevent the click from propagating to other handlers that might close the dropdown
+        event.stopPropagation();
+
         if (notificationDropdown.classList.contains("hidden")) {
             notificationDropdown.classList.remove("hidden");
             setTimeout(() => {
@@ -56,6 +58,20 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 notificationDropdown.classList.add("hidden");
             }, 300); // Match the animation duration
+        }
+    });
+
+    // Optional: Close dropdown if clicked outside
+    document.addEventListener("click", (event) => {
+        if (
+            !notificationDropdown.contains(event.target) &&
+            !notificationButton.contains(event.target)
+        ) {
+            notificationDropdown.classList.add("opacity-0", "scale-95");
+            notificationDropdown.classList.remove("opacity-100", "scale-100");
+            setTimeout(() => {
+                notificationDropdown.classList.add("hidden");
+            }, 300); // Close the dropdown if clicked outside
         }
     });
 });

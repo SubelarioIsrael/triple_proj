@@ -31,14 +31,14 @@
                             </div>
                         </div>
 
-                        <!-- Remember Me -->
+                        {{-- <!-- Remember Me -->
                         <div class="flex flex-wrap items-center justify-between gap-4">
                             <div class="text-sm">
                                 <a href="javascript:void(0);" class="text-blue-600 hover:underline font-semibold">
                                     Forgot your password?
                                 </a>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <!-- Error Message -->
                         @if ($errors->any())

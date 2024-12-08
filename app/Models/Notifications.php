@@ -21,4 +21,7 @@ class Notifications extends Model
     {
         return $this->belongsTo(User::class, 'added_by_user_id');
     }
+    protected $casts = [
+        'start_time' => 'datetime',
+    ];
 }

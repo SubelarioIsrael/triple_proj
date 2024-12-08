@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Notifications;
+use Carbon\Carbon;
 
 class AdminNotificationsController extends Controller
 {
     // Display the notifications page
     public function index()
     {
-        // Fetch all active notifications
-        $notifications = Notifications::with('user')->get();
+        $notifications = Notifications::all()->map(function ($notification) {
+            $notification->start_time = Carbon::createFromTimestamp($notification->start_time); // Convert to Carbon
+            return $notification;
+        });
 
         return view('admin.admin-notifications', compact('notifications'));
     }
