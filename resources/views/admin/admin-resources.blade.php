@@ -23,12 +23,21 @@
 
             <!-- Helpful Links Section -->
             <h2 class="text-2xl font-bold mb-6 text-center">Helpful Links</h2>
-            <form method="POST" action="{{ route('admin-resources.store-resource') }}" class="mb-4">
+            @if ($errors->any())
+                <div class="bg-red-100 text-red-700 border border-red-400 px-4 py-3 rounded mb-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form method="POST" action="{{ route('admin-resources.store-resource') }}" class="mb-12">
                 @csrf
                 <div class="grid grid-cols-3 gap-4">
-                    <input type="text" name="url" placeholder="Resource URL" class="border p-2 rounded" required>
-                    <input type="text" name="thumbnail" placeholder="Thumbnail URL" class="border p-2 rounded" required>
-                    <input type="text" name="title" placeholder="Resource Title" class="border p-2 rounded" required>
+                    <input type="text" name="url" placeholder="Resource URL" value="{{ old('url') }}" class="border p-2 rounded" required>
+                    <input type="text" name="thumbnail" placeholder="Thumbnail URL" value="{{ old('thumbnail') }}" class="border p-2 rounded" required>
+                    <input type="text" name="title" placeholder="Resource Title" value="{{ old('title') }}" class="border p-2 rounded" required>
                 </div>
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2">
                     Add Resource
@@ -38,7 +47,7 @@
                 @foreach ($resources as $resource)
                     <div class="border rounded-lg shadow-lg overflow-hidden relative p-4">
                         <a href="{{ $resource->url }}" target="_blank" class="block">
-                            <img src="{{ $resource->thumbnail }}" alt="{{ $resource->title }}" class="w-full h-40 object-cover">
+                            <img src="{{ asset($resource->thumbnail) }}" alt="{{ $resource->title }}" class="w-full h-40 object-cover">
                             <div class="p-4 text-center">
                                 <h3 class="text-md font-semibold mb-8">{{ $resource->title }}</h3>
                             </div>
@@ -49,23 +58,40 @@
                         </a>
                     </div>
                 @endforeach
+                @if ($resources->isEmpty())
+                    <p class="text-center text-gray-600">No resources available.</p>
+                @endif
+
+                @if ($articles->isEmpty())
+                    <p class="text-center text-gray-600">No articles available.</p>
+                @endif
             </div>
 
             <div class="my-12"></div>
 
             <!-- Articles Section -->
             <h2 class="text-2xl font-bold mb-6 text-center">Articles</h2>
-            <form method="POST" action="{{ route('admin-resources.store-article') }}" class="mb-4">
+            @if ($errors->any())
+                <div class="bg-red-100 text-red-700 border border-red-400 px-4 py-3 rounded mb-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form method="POST" action="{{ route('admin-resources.store-article') }}" class="mb-12">
                 @csrf
                 <div class="grid grid-cols-3 gap-4">
-                    <input type="text" name="title" placeholder="Article Title" class="border p-2 rounded" required>
-                    <input type="text" name="excerpt" placeholder="Article Excerpt" class="border p-2 rounded" required>
-                    <input type="text" name="url" placeholder="Article URL" class="border p-2 rounded" required>
+                    <input type="text" name="title" placeholder="Article Title" value="{{ old('title') }}" class="border p-2 rounded" required>
+                    <input type="text" name="excerpt" placeholder="Article Excerpt" value="{{ old('excerpt') }}" class="border p-2 rounded" required>
+                    <input type="text" name="url" placeholder="Article URL" value="{{ old('url') }}" class="border p-2 rounded" required>
                 </div>
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2">
                     Add Article
                 </button>
             </form>
+
             <div class="grid grid-cols-3 gap-6">
                 @foreach ($articles as $article)
                     <div class="border rounded-lg shadow-lg p-4 relative">

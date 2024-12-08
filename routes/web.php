@@ -109,16 +109,14 @@ Route::name('admin.')->group(function () {
 });
 
 // Admin Resources and Articles Routes
-Route::prefix('admin-resources')->group(function () {
-    Route::get('/resources', [AdminResourcesController::class, 'index'])->name('admin-resources.index'); // Show all resources and articles
-
-    // Resource routes
-    Route::post('/resources/store', [AdminResourcesController::class, 'storeResource'])->name('admin-resources.store-resource'); // Store a new resource
-    Route::put('/resources/{id}', [AdminResourcesController::class, 'updateResource'])->name('admin-resources.edit-resource'); // Update an existing resource
-
-    // Article routes
-    Route::post('/articles', [AdminResourcesController::class, 'storeArticle'])->name('admin-resources.store-article'); // Store a new article
-    Route::put('/articles/{id}', [AdminResourcesController::class, 'updateArticle'])->name('admin-resources.edit-article'); // Update an existing article
+Route::prefix('admin/resources')->group(function () {
+    Route::get('/', [AdminResourcesController::class, 'index'])->name('admin-resources.index');
+    Route::post('/store-resource', [AdminResourcesController::class, 'storeResource'])->name('admin-resources.store-resource');
+    Route::post('/store-article', [AdminResourcesController::class, 'storeArticle'])->name('admin-resources.store-article');
+    Route::get('/admin/resources/edit-resource/{id}', [AdminResourcesController::class, 'editResource'])->name('admin-resources.edit-resource');
+    Route::get('/edit-article/{id}', [AdminResourcesController::class, 'editArticle'])->name('admin-resources.edit-article');
+    Route::put('/update-resource/{id}', [AdminResourcesController::class, 'updateResource'])->name('admin-resources.update-resource');
+    Route::post('/update-article/{id}', [AdminResourcesController::class, 'updateArticle'])->name('admin-resources.update-article');
 });
 
 
