@@ -34,6 +34,11 @@
                     MTQ
                 </a>
             </li>
+            <li class="py-2">
+                <a href="{{ route('admin.exercises') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
+                    Exercises
+                </a>
+            </li>
             <!-- Sign Out Section -->
             <li class="mt-8">
                 <!-- Sign Out Button -->

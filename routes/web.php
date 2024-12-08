@@ -23,6 +23,7 @@ use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\AdminFeedbackController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\AccountsController;
+use App\Http\Controllers\AdminExercisesController;
 use App\Http\Controllers\AdminResourcesController;
 use App\Http\Controllers\AdminNotificationsController;
 use App\Http\Controllers\AdminMTQController;
@@ -103,6 +104,13 @@ Route::name('admin.')->group(function () {
     Route::get('/mtq', [AdminMTQController::class, 'index'])->name('mtq');
     Route::get('/admin/mtq/{id}/edit', [AdminMTQController::class, 'edit'])->name('mtq.edit');
     Route::put('/admin/mtq/{id}', [AdminMTQController::class, 'update'])->name('mtq.update');
+
+    Route::get('/admin-exercises', [AdminExercisesController::class, 'index'])->name('exercises');
+    Route::get('/admin/exercises/create', [AdminExercisesController::class, 'create'])->name('exercises.create');
+    Route::post('/admin/exercises', [AdminExercisesController::class, 'store'])->name('exercises.store');
+
+    Route::get('/admin/exercises/{exercise}/edit', [AdminExercisesController::class, 'edit'])->name('exercises.edit');
+    Route::put('/admin/exercises/{exercise}', [AdminExercisesController::class, 'update'])->name('exercises.update');
 
 
     // Add other admin-specific routes here
