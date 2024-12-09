@@ -63,7 +63,7 @@
                         <label for="description" class="block text-sm font-semibold text-gray-700">Description</label>
                         <textarea name="description" id="description" rows="4" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
                     </div>
-                    <button type="submit" class="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Save</button>
+                    <button id="addNotifBtn" type="submit" class="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Save</button>
                 </form>
             </div>
         </div>
