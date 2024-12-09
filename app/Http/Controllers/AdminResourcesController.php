@@ -84,5 +84,21 @@ class AdminResourcesController extends Controller
         $article = Articles::findOrFail($id);
         return view('admin.edit-article', compact('article'));
     }
+    public function destroyResource($id)
+    {
+        // Find the resource by ID and delete it
+        $resource = Resources::findOrFail($id);
+        $resource->delete();
+
+        // Redirect back with success message
+        return redirect()->route('admin-resources.index')->with('success', 'Resource removed successfully!');
+    }
+    public function destroyArticle($id)
+    {
+        $article = Articles::findOrFail($id);
+        $article->delete();
+
+        return redirect()->route('admin-resources.index')->with('success', 'Article deleted successfully!');
+    }
 
 }

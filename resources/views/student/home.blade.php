@@ -81,7 +81,7 @@
                 </div>
                 <h3 class="text-xl font-bold text-bg_blue mb-2">Read Up Resources</h3>
                 <p class="text-gray-600 mb-4">Explore helpful articles and tips.</p>
-                <a href="{{ route('student.online-resources') }}" class="w-full block py-2 bg-red-500 text-white font-semibold rounded hover:bg-white hover:text-red-500 border border-red-500 text-center transition">
+                <a id="resourcesBtn" href="{{ route('student.online-resources') }}" class="w-full block py-2 bg-red-500 text-white font-semibold rounded hover:bg-white hover:text-red-500 border border-red-500 text-center transition">
                     Read Now
                 </a>
             </div>

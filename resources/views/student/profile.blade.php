@@ -25,9 +25,10 @@
             <!-- Profile Info -->
             <h1 class="text-2xl font-semibold text-gray-800 mb-4">Profile</h1>
             <div class="space-y-4">
-                <p><strong>Username:</strong> {{ $user->username }}</p>
-                <p><strong>Email:</strong> {{ $user->email }}</p>
-                <p><strong>Phone Number:</strong> {{ $user->contact_number }}</p>
+                <p id="profile_username"><strong>Username:</strong> {{ $user->username }}</p>
+                <p id="profile_email"><strong>Email:</strong> {{ $user->email }}</p>
+                <p id="profile_contact_number"><strong>Phone Number:</strong> {{ $user->contact_number }}</p>
+
             </div>
             <!-- Edit Profile Button -->
             <button id="editProfileBtn" class="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">Edit Profile</button>
