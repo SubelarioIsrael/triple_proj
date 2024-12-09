@@ -46,7 +46,7 @@
                     <input type="text" name="title" id="title" class="border p-2 rounded w-full" value="{{ $resource->title }}" required>
                 </div>
     
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                <button id="saveChangeBtn" type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                     Save Changes
                 </button>
             </form>
