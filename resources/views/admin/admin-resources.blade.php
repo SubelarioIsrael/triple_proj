@@ -35,21 +35,23 @@
             <form method="POST" action="{{ route('admin-resources.store-resource') }}" class="mb-12">
                 @csrf
                 <div class="grid grid-cols-3 gap-4">
-                    <input type="text" name="resource-url" placeholder="Resource URL" value="{{ old('url') }}" class="border p-2 rounded" required>
-                    <input type="text" name="resource-thumbnail" placeholder="Thumbnail URL" value="{{ old('thumbnail') }}" class="border p-2 rounded" required>
-                    <input type="text" name="resource-title" placeholder="Resource Title" value="{{ old('title') }}" class="border p-2 rounded" required>
+                    <input type="text" name="url" placeholder="Resource URL" value="{{ old('url') }}" class="border p-2 rounded" required>
+                    <input type="text" name="thumbnail" placeholder="Thumbnail URL" value="{{ old('thumbnail') }}" class="border p-2 rounded" required>
+                    <input type="text" name="title" placeholder="Resource Title" value="{{ old('title') }}" class="border p-2 rounded" required>
                 </div>
                 <button name="resourceSubmitBtn" type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2">
                     Add Resource
                 </button>
             </form>
+            
             <div class="grid grid-cols-3 gap-6">
                 @foreach ($resources as $resource)
-                    <div class="border rounded-lg shadow-lg overflow-hidden relative p-4 .resource-container">
+                    <!-- Resource Container with a specific class -->
+                    <div class="resource-container border rounded-lg shadow-lg overflow-hidden relative p-4">
                         <a href="{{ $resource->url }}" target="_blank" class="block">
                             <img src="{{ asset($resource->thumbnail) }}" alt="{{ $resource->title }}" class="w-full h-40 object-cover">
                             <div class="p-4 text-center">
-                                <h3 class="text-md font-semibold mb-8">{{ $resource->title }}</h3>
+                                <h3 class="resource-title text-md font-semibold mb-8">{{ $resource->title }}</h3>
                             </div>
                         </a>
                         <div class="flex items-center justify-end gap-2">
@@ -91,9 +93,9 @@
             <form method="POST" action="{{ route('admin-resources.store-article') }}" class="mb-12">
                 @csrf
                 <div class="grid grid-cols-3 gap-4">
-                    <input type="text" name="title" placeholder="Article Title" value="{{ old('title') }}" class="border p-2 rounded" required>
-                    <input type="text" name="excerpt" placeholder="Article Excerpt" value="{{ old('excerpt') }}" class="border p-2 rounded" required>
-                    <input type="text" name="url" placeholder="Article URL" value="{{ old('url') }}" class="border p-2 rounded" required>
+                    <input type="text" id="title" placeholder="Article Title" value="{{ old('title') }}" class="border p-2 rounded" required>
+                    <input type="text" id="excerpt" placeholder="Article Excerpt" value="{{ old('excerpt') }}" class="border p-2 rounded" required>
+                    <input type="text" id="url" placeholder="Article URL" value="{{ old('url') }}" class="border p-2 rounded" required>
                 </div>
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2">
                     Add Article
@@ -125,13 +127,13 @@
                     </div>
                 @endforeach
 
-
                 @if ($articles->isEmpty())
                     <p class="text-center text-gray-600">No articles available.</p>
                 @endif
             </div>
         </div>
     </div>
+
     <script>
         // Add event listener to all delete forms
         document.querySelectorAll('.delete-form').forEach(form => {
