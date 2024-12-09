@@ -73,7 +73,7 @@
     
                     <div class="mt-6 flex justify-end space-x-4">
                         <button type="button" id="cancelEditProfileBtn" class="px-4 py-2 bg-gray-300 rounded-lg shadow hover:bg-gray-400">Cancel</button>
-                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">Save</button>
+                        <button name="saveBtn" type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">Save</button>
                     </div>
                 </form>
             </div>

@@ -95,11 +95,15 @@ Route::name('admin.')->group(function () {
 
     Route::get('/accounts', [AccountsController::class, 'index'])->name('accounts');
     Route::delete('/admin/users/{id}', [AccountsController::class, 'destroy'])->name('users.destroy');
+    Route::delete('/admin/users/students', [AccountsController::class, 'destroyAllStudents'])->name('users.destroyAllStudents');
+
 
     // notifications
     Route::get('/notifications', [AdminNotificationsController::class, 'index'])->name('notifications');
     Route::post('/notifications', [AdminNotificationsController::class, 'store'])->name('notifications.store');
     Route::delete('/admin/notifications/{id}', [AdminNotificationsController::class, 'destroy'])->name('notifications.delete');
+    Route::delete('/admin/notifications', [AdminNotificationsController::class, 'destroyAll'])->name('notifications.destroyAll');
+
 
     Route::get('/mtq', [AdminMTQController::class, 'index'])->name('mtq');
     Route::get('/admin/mtq/{id}/edit', [AdminMTQController::class, 'edit'])->name('mtq.edit');

@@ -115,7 +115,7 @@
 
             <!-- Submit Button -->
             <section class="text-center align">
-                <button type="submit" class="bg-bg_blue text-white py-3 px-6 rounded-lg hover:bg-blue-700">Submit Feedback</button>
+                <button name="feedbackSubmitBtn"type="submit" class="bg-bg_blue text-white py-3 px-6 rounded-lg hover:bg-blue-700">Submit Feedback</button>
             </section>
         </form>
     </div>

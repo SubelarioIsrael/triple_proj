@@ -40,7 +40,16 @@
                     </div>
                 @endforeach
             </div>
-
+            <!-- Delete All Notifications Button -->
+            <div class="mb-6">
+                <form action="{{ route('admin.notifications.destroyAll') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete all notifications? This action cannot be undone.')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
+                        Delete All Notifications
+                    </button>
+                </form>
+            </div>
             <!-- Add Notification Section -->
             <div>
                 <h2 class="text-xl font-semibold text-gray-800 mb-4">Add Notification</h2>

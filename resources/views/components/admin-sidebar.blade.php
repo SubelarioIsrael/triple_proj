@@ -5,37 +5,37 @@
     <nav>
         <ul class="space-y-4 divide-y">
             <li class="py-2">
-                <a href="{{ route('admin.home') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
+                <a name="homeBtn" href="{{ route('admin.home') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
                     Home
                 </a>
             </li>
             <li class="py-2">
-                <a href="{{ route('admin.feedback') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
+                <a name="feedbackBtn" href="{{ route('admin.feedback') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
                     Feedback
                 </a>
             </li>
             <li class="py-2">
-                <a href="{{ route('admin.accounts') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
+                <a name="accsBtn" href="{{ route('admin.accounts') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
                     Accounts
                 </a>
             </li>
             <li class="py-2">
-                <a href="{{ route('admin-resources.index') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
+                <a name="resourcesBtn" href="{{ route('admin-resources.index') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
                     Resources
                 </a>
             </li>
             <li class="py-2">
-                <a href="{{ route('admin.notifications') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
+                <a name="notifsBtn" href="{{ route('admin.notifications') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
                     Notifications
                 </a>
             </li>
             <li class="py-2">
-                <a href="{{ route('admin.mtq') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
+                <a name="mtqBtn" href="{{ route('admin.mtq') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
                     MTQ
                 </a>
             </li>
             <li class="py-2">
-                <a href="{{ route('admin.exercises') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
+                <a name="exercisesBtn" href="{{ route('admin.exercises') }}" class="block text-gray-700 hover:text-blue-600 font-semibold">
                     Exercises
                 </a>
             </li>

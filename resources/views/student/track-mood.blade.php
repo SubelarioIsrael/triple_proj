@@ -51,9 +51,6 @@
     
         <form action="{{ route('student.store-mood') }}" method="POST" class="space-y-8">
             @csrf
-        
-            
-        
             @foreach ($questions as $index => $question)
                 <div class="space-y-4">
                     <p class="text-lg font-medium text-gray-800">{{ $question }}</p>
@@ -78,7 +75,8 @@
         
             <div class="text-center">
                 <button type="submit" 
-                        class="px-6 py-3 bg-bg_blue text-white font-semibold rounded-md hover:bg-blue-800 transition">
+                        class="px-6 py-3 bg-bg_blue text-white font-semibold rounded-md hover:bg-blue-800 transition"
+                        name="submit-mood">
                     Continue
                 </button>
             </div>

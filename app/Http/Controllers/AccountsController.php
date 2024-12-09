@@ -30,4 +30,13 @@ class AccountsController extends Controller
         // Redirect back with a success message
         return redirect()->back()->with('success', 'User removed successfully.');
     }
+    // Delete all student accounts
+    public function destroyAllStudents()
+    {
+        // Delete all users with the type 'student'
+        User::where('type', 'student')->delete();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'All student accounts have been deleted.');
+    }
 }

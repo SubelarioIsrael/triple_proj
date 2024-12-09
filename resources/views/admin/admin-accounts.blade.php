@@ -13,6 +13,12 @@
                 event.preventDefault(); // Cancel form submission if not confirmed
             }
         }
+
+        function confirmDeleteAll(event) {
+            if (!confirm('Are you sure you want to delete all student accounts? This action cannot be undone.')) {
+                event.preventDefault(); // Cancel form submission if not confirmed
+            }
+        }
     </script>
 </head>
 <body class="bg-gray-100">
@@ -47,7 +53,17 @@
                     @empty
                         <p class="text-gray-500">No students found.</p>
                     @endforelse
-                </div>
+                </div>   
+            </div>
+            <!-- Delete All Students Button -->
+            <div class="mb-6">
+                <form action="{{ route('admin.users.destroyAllStudents') }}" method="POST" onsubmit="confirmDeleteAll(event);">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600">
+                        Delete All Students
+                    </button>
+                </form>
             </div>
 
             <!-- Admins Section -->
@@ -62,14 +78,6 @@
                                 <p class="text-sm text-gray-500">📞 {{ $admin->contact_number }}</p>
                                 <p class="text-sm text-gray-500">📧 {{ $admin->email }}</p>
                             </div>
-                            <!-- Remove Button -->
-                            <form action="{{ route('admin.users.destroy', $admin->id) }}" method="POST" onsubmit="confirmDelete(event);">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600">
-                                    Remove
-                                </button>
-                            </form>
                         </div>
                     @empty
                         <p class="text-gray-500">No admins found.</p>

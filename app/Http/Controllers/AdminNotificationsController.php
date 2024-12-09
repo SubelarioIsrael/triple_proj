@@ -49,4 +49,13 @@ class AdminNotificationsController extends Controller
         // Redirect back with success message
         return redirect()->route('admin.notifications')->with('success', 'Notification deleted successfully!');
     }
+    // Delete all notifications
+    public function destroyAll()
+    {
+        // Delete all notifications
+        Notifications::truncate();
+
+        // Redirect back with success message
+        return redirect()->route('admin.notifications')->with('success', 'All notifications have been deleted.');
+    }
 }

@@ -12,9 +12,9 @@
         <nav>
             <ul class="space-y-4 divide-solid">
                 <li><a href="{{ route('student.home') }}" class="mt-4 block text-gray-700 hover:text-blue-600 font-semibold">Home</a></li>
-                <li><a href="{{ route('student.profile') }}" class="mt-4 block text-gray-700 hover:text-blue-600 font-semibold">Profile</a></li>
+                <li><a id="profileBtn" href="{{ route('student.profile') }}" class="mt-4 block text-gray-700 hover:text-blue-600 font-semibold">Profile</a></li>
                 <li><a href="{{ route('student.about-us') }}" class="mt-4 block text-gray-700 hover:text-blue-600 font-semibold">About Us</a></li>
-                <li><a href="{{ route('student.feedback') }}" class="mt-4 block text-gray-700 hover:text-blue-600 font-semibold">Give Feedback</a></li>
+                <li><a id="feedbackBtn" href="{{ route('student.feedback') }}" class="mt-4 block text-gray-700 hover:text-blue-600 font-semibold">Give Feedback</a></li>
                 
                 <!-- Sign Out Button Section -->
                 <li class="mt-8">
@@ -100,7 +100,7 @@
     <div class="absolute right-6 flex items-center space-x-6">
         <!-- Notification Button with Counter -->
         <div class="relative">
-            <button id="notificationButton" class="relative">
+            <button name="notif-button" id="notificationButton" class="relative">
                 <img src="{{ URL('images/notification.png') }}" alt="Notification" class="w-8 h-8">
                 <!-- Notification Counter -->
                 @if($notifications->count() > 0)
@@ -115,6 +115,9 @@
                     No notifications at the moment
                 </div>
                 <!-- Notification List -->
+                <h2 name="notif-dropdown"class="text-xl font-semibold text-gray-800 py-2 px-4 border-gray-200">
+                    Notifications
+                </h2>
                 <ul id="notificationList" class="divide-y divide-gray-200 hidden">
                     @foreach($notifications as $notification)
                         <li class="p-4 hover:bg-gray-50">
