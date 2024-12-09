@@ -97,6 +97,8 @@ Route::name('admin.')->group(function () {
     Route::delete('/admin/users/{id}', [AccountsController::class, 'destroy'])->name('users.destroy');
     Route::delete('/admin/users/students', [AccountsController::class, 'destroyAllStudents'])->name('users.destroyAllStudents');
 
+    Route::delete('/admin/feedback/{id}', [AdminFeedbackController::class, 'delete'])->name('feedback.delete');
+    Route::delete('/admin/feedback', [AdminFeedbackController::class, 'deleteAll'])->name('feedback.deleteAll');
 
     // notifications
     Route::get('/notifications', [AdminNotificationsController::class, 'index'])->name('notifications');

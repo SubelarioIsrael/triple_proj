@@ -4,17 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Feedback;
-use Illuminate\Support\Facades\Auth;
 
 class AdminFeedbackController extends Controller
 {
     public function index()
     {
-        // Get the authenticated admin (if needed)
-        $admin = Auth::user();
-
         $feedbacks = Feedback::all(); // Fetch all feedback data
-        // Pass the feedback data to the view
-        return view('admin.admin-feedback', compact('admin', 'feedbacks'));
+        return view('admin.admin-feedback', compact('feedbacks'));
+    }
+
+    public function delete($id)
+    {
+        $feedback = Feedback::find($id);
+
+        if ($feedback) {
+            $feedback->delete();
+            return redirect()->route('admin.feedback')->with('success', 'Feedback deleted successfully.');
+        }
+
+        return redirect()->route('admin.feedback')->with('error', 'Feedback not found.');
+    }
+
+    public function deleteAll()
+    {
+        Feedback::truncate(); // Deletes all feedback records
+        return redirect()->route('admin.feedback')->with('success', 'All feedback deleted successfully.');
     }
 }
