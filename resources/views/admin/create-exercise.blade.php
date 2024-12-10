@@ -60,7 +60,7 @@
                         <textarea name="instructions" id="instructions" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">{{ old('instructions') }}</textarea>
                     </div>
 
-                    <button type="submit" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">Add Exercise</button>
+                    <button id="createExerciseBtn" type="submit" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">Add Exercise</button>
                 </div>
             </form>
         </div>

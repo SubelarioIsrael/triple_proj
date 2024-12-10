@@ -19,7 +19,7 @@
         @foreach ($exercises as $index => $exercise)
             <a href="{{ route('student.exercise.show', ['name' => urlencode($exercise['name'])]) }}" 
                class="subject-box flex flex-col items-center text-center p-4 rounded-lg bg-gray-50 shadow hover:bg-gray-100">
-                <img src="{{ asset('images/exercises/' . ['self-improvement.png', 'check_box_outline.png', 'balance.png', 'bolt.png'][$index]) }}" 
+                <img src="{{ asset('images/exercises/' . ['self-improvement.png', 'check_box_outline.png', 'balance.png', 'bolt.png', 'balance.png','balance.png'][$index]) }}" 
                      alt="{{ $exercise['name'] }} Icon" 
                      class="w-16 h-16 mb-2">
                 <span class="text-lg font-semibold">{{ $exercise['name'] }}</span>
