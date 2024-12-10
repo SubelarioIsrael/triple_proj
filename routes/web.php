@@ -49,6 +49,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('user', UserController::class);
 
+Route::post('/chatbot/sendMessage', [ChatbotController::class, 'sendMessage'])->name('chatbot.sendMessage');
+Route::post('/chatbot/clear', [ChatbotController::class, 'clearMessages'])->name('chatbot.clear');
 
 Route::middleware(['auth', 'student'])->name('student.')->group(function () {
     // Sidebar

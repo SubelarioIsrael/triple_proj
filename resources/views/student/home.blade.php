@@ -19,7 +19,7 @@
                 <h2 class="text-2xl font-bold">Not Feeling Well?</h2>
                 <p class="text-base mt-1">Seek help from a trusted professional</p>
             </div>
-            <a href="{{ route('student.hotlines') }}" class="text-red-500 text-lg font-semibold hover:underline">See all</a>
+            <a name="hotlinesBtn" href="{{ route('student.hotlines') }}" class="text-red-500 text-lg font-semibold hover:underline">See all</a>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Crisis Hotline 1 -->
