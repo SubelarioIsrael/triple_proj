@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\MoodHistory;
 use App\Models\Notifications; // Add Notifications model
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -46,7 +47,7 @@ class ProfileController extends Controller
 
         // Update password only if provided
         if (!empty($validatedData['password'])) {
-            $user->password = bcrypt($validatedData['password']);
+            $user->password = $validatedData['password']; // The mutator will hash it
         }
 
         $user->save(); // Save user data
@@ -54,6 +55,7 @@ class ProfileController extends Controller
         // Redirect back with a success message
         return redirect()->route('student.profile')->with('success', 'Profile updated successfully.');
     }
+
 
 
 }

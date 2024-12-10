@@ -93,14 +93,14 @@
             <form method="POST" action="{{ route('admin-resources.store-article') }}" class="mb-12">
                 @csrf
                 <div class="grid grid-cols-3 gap-4">
-                    <input type="text" id="title" placeholder="Article Title" value="{{ old('title') }}" class="border p-2 rounded" required>
-                    <input type="text" id="excerpt" placeholder="Article Excerpt" value="{{ old('excerpt') }}" class="border p-2 rounded" required>
-                    <input type="text" id="url" placeholder="Article URL" value="{{ old('url') }}" class="border p-2 rounded" required>
+                    <input type="text" name="title" id="title" placeholder="Article Title" value="{{ old('title') }}" class="border p-2 rounded" required>
+                    <input type="text" name="excerpt" id="excerpt" placeholder="Article Excerpt" value="{{ old('excerpt') }}" class="border p-2 rounded" required>
+                    <input type="text" name="url" id="url" placeholder="Article URL" value="{{ old('url') }}" class="border p-2 rounded" required>
                 </div>
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-2">
                     Add Article
                 </button>
-            </form>
+            </form>            
 
             <div class="grid grid-cols-3 gap-6">
                 @foreach ($articles as $article)

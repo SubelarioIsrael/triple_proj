@@ -130,7 +130,7 @@ Route::prefix('admin/resources')->group(function () {
     Route::get('/admin/resources/edit-resource/{id}', [AdminResourcesController::class, 'editResource'])->name('admin-resources.edit-resource');
     Route::get('/edit-article/{id}', [AdminResourcesController::class, 'editArticle'])->name('admin-resources.edit-article');
     Route::put('/update-resource/{id}', [AdminResourcesController::class, 'updateResource'])->name('admin-resources.update-resource');
-    Route::post('/update-article/{id}', [AdminResourcesController::class, 'updateArticle'])->name('admin-resources.update-article');
+    Route::put('/update-article/{id}', [AdminResourcesController::class, 'updateArticle'])->name('admin-resources.update-article');
     Route::delete('/admin/resources/{id}', [AdminResourcesController::class, 'destroyResource'])->name('admin-resources.destroy');
     Route::delete('/admin/resources/articles/{id}', [AdminResourcesController::class, 'destroyArticle'])->name('admin-resources.destroy-article');
 });

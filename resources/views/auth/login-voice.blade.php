@@ -20,7 +20,7 @@
 
             <!-- Greeting and Instructions -->
             <div class="text-center mb-16">
-                <p class="text-2xl font-semibold">Hi <span class="text-blue-400">Merc</span>! Please speak into the microphone</p>
+                <p class="text-2xl font-semibold">Hi <span class="text-blue-400">{{$user->username}}</span>! Please speak into the microphone</p>
             </div>
 
             <!-- User Avatar -->
