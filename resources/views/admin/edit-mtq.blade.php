@@ -26,7 +26,7 @@
                 <input type="text" name="q_item" id="q_item" value="{{ old('q_item', $question->q_item) }}" class="mt-2 p-2 border border-gray-300 rounded w-full" required>
             </div>
 
-            <button type="submit" class="bg-blue-500 text-white p-2 rounded">Save Changes</button>
+            <button name="submitMtqBtn" type="submit" class="bg-blue-500 text-white p-2 rounded">Save Changes</button>
         </form>
 
         <!-- Back to Questions List -->

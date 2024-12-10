@@ -33,7 +33,7 @@ class RegisterController extends Controller
         ]);
 
         // Redirect to login or dashboard
-        return redirect()->route('authentication.sign-in')->with('success', 'Registration successful. Please log in.');
+        return redirect()->route('authentication.register-voice')->with('success', 'Registration successful. Please log in.');
     }
 
 }

@@ -20,7 +20,7 @@
 
             <!-- Greeting and Instructions -->
             <div class="text-center mb-16">
-                <p class="text-2xl font-semibold"><span class="text-blue-400"></span>! Please speak into the microphone to register your voice</p>
+                <p class="text-2xl font-semibold"><span class="text-blue-400"></span>Please speak into the microphone to register your voice</p>
             </div>
 
             <!-- User Avatar -->
@@ -48,7 +48,7 @@
 
             <!-- Microphone Button -->
             <div class="flex flex-col items-center">
-                <button id="start-voice-recognition" type="submit" class="w-20 h-20 bg-bg_blue rounded-full flex items-center justify-center hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-400" onclick="window.location.href='{{ route('authentication.welcome-back') }}'">
+                <button id="start-voice-recognition" type="submit" class="w-20 h-20 bg-bg_blue rounded-full flex items-center justify-center hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-400" onclick="window.location.href='{{ route('authentication.sign-in') }}'">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" class="w-10 h-10">
                         <path d="M12 14a4 4 0 004-4V5a4 4 0 10-8 0v5a4 4 0 004 4z"></path>
                         <path d="M19 10a1 1 0 00-2 0 5 5 0 01-10 0 1 1 0 00-2 0 7 7 0 007 7v3H8a1 1 0 000 2h8a1 1 0 000-2h-4v-3a7 7 0 007-7z"></path>
